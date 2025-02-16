@@ -16,7 +16,7 @@ The chatbot allows you to have an ongoing conversation, storing your conversatio
 Before running the application, ensure you have the following:
 
 - Java 17 or higher
-- Maven or Gradle
+- Maven
 - Access to the OpenAI API (you will need to provide an API key)
 
 ## Setup
