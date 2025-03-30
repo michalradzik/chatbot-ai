@@ -36,8 +36,10 @@ OPENAI_API_KEY=your-api-key-here
 If you're using Maven, you can build and run the application with the following commands:
 mvn clean install mvn spring-boot:run
 
-Ask your question (or type 'exit' to quit): How are you today? 
+Welcome to the AI Chatbot. Ask a question or type 'exit' to quit.
+Your question: How are you today?
 Bot: I'm doing great, thank you for asking!
+
 
 
 
