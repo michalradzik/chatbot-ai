@@ -10,24 +10,21 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @SpringBootApplication
-public class ConsoleApplication {
+@Component
+@RequiredArgsConstructor
+public class ConsoleApplication implements CommandLineRunner {
+
+    private final ChatClient chatClient;
 
     public static void main(String[] args) {
         SpringApplication.run(ConsoleApplication.class, args);
     }
 
-    @Component
-    @RequiredArgsConstructor
-    public static class ConsoleRunner implements CommandLineRunner {
+    @Override
+    public void run(String... args) {
+        System.out.println("Welcome to the AI application. Ask a question or type 'exit' to quit.");
 
-        private final ChatClient chatClient;
-
-
-        @Override
-        public void run(String... args) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Welcome to the AI application. Ask a question or type 'exit' to quit.");
-
+        try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 System.out.print("Your question: ");
                 String userInput = scanner.nextLine();
@@ -44,8 +41,8 @@ public class ConsoleApplication {
                     System.err.println("An error occurred while processing the request.");
                 }
             }
-
-            scanner.close();
+        } catch (Exception e) {
+            System.err.println("An error occurred while setting up the scanner: " + e.getMessage());
         }
     }
 }

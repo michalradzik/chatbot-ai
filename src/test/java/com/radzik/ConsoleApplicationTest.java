@@ -19,7 +19,7 @@ class ConsoleApplicationTest {
     private ChatClient chatClient;
 
     @InjectMocks
-    private ConsoleApplication.ConsoleRunner consoleRunner;
+    private ConsoleApplication consoleRunner;
 
     @BeforeEach
     void setUp() {
@@ -27,21 +27,24 @@ class ConsoleApplicationTest {
     }
 
     @Test
-    void testExitCommand(){
-
+    void shouldExitApplicationWhenUserEntersExitCommand() {
+        // Given
         ByteArrayInputStream in = new ByteArrayInputStream("exit\n".getBytes());
         System.setIn(in);
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
+        // When
         consoleRunner.run();
 
+        // Then
         assertTrue(outContent.toString().contains("Exiting application..."));
     }
 
     @Test
-    void testValidChatResponse() {
+    void shouldReturnValidChatResponseWhenUserAsksAQuestion() {
+        // Given
         ByteArrayInputStream in = new ByteArrayInputStream("Hello?\nexit\n".getBytes());
         System.setIn(in);
 
@@ -50,8 +53,10 @@ class ConsoleApplicationTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
+        // When
         consoleRunner.run();
 
+        // Then
         assertTrue(outContent.toString().contains("AI's response: Hi there!"));
         verify(chatClient, times(1)).call("Hello?");
     }
