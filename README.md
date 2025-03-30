@@ -25,11 +25,12 @@ Before running the application, ensure you have the following:
 git clone https://github.com/michalradzik/chatbot-ai.git cd chatbot-ai
 
 
-### 2. Add environment variables
+### 2. Configure API Key
 
-The application uses environment variables to store sensitive information like the OpenAI API key and API URL. You can set these in your `.env` file (root directory).
+The application uses the application.properties file to store your OpenAI API key.
+Edit src/main/resources/application.properties and set your key:
 
-OPENAI_API_KEY=your-api-key-here
+
 
 ### 3. Build and run the application
 
